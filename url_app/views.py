@@ -1,12 +1,10 @@
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-
-# Create your views here.
-from django.views.generic import View
-
+from django.views.generic import View, ListView
 from url_app.forms import BookmarkForm
 from hashids import Hashids
+from url_app.models import Bookmark, Click
 
 
 class FirstView(View):
@@ -24,7 +22,17 @@ class FirstView(View):
             new_url = form_instance.save()
             new_url.shortened_url = hashids.encode(new_url.id)
             new_url.save()
-            return render(request, 'index.html', {'new_url':new_url})
+            return render(request, "new_url.html", {'new_url': new_url})
         return HttpResponseRedirect(reverse("first_view"))
 
-    
+
+class BookmarkListView(ListView):
+    model = Bookmark
+
+
+def redirect(request, url):
+    redirect_url_object = Bookmark.objects.get(shortened_url=url)
+    return HttpResponseRedirect(redirect_url_object.original_url)
+
+
+

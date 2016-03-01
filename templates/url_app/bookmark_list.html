@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for url in object_list %}
+    <div>{{ url.title }}: <a href="{{ url.original_url }}">http://127.0.0.1:8000/b/{{ url.shortened_url }}</a> Time Created: {{ url.timestamp }}</div>
+{% endfor %}
+
+{% endblock %}
