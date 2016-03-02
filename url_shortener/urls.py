@@ -15,15 +15,18 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
+from url_app.views import redirect, BookmarkListView, BookmarkDetailView, BookmarkCreateView, BookmarkUpdateView
 
-from url_app.views import FirstView, redirect, BookmarkListView, BookmarkDetailView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', FirstView.as_view(), name="first_view"),
+    url(r'^$', BookmarkCreateView.as_view(), name="first_view"),
     url(r'^list/', BookmarkListView.as_view(), name="bookmark_list_view"),
     url(r'^b/(?P<url>\w+)', redirect),
-    url(r'^newurl/', FirstView.as_view(), name="new_url"),
-    url(r'^detail/(?P<pk>\d+)', BookmarkDetailView.as_view(), name="detail_view")
+    url(r'^detail/(?P<pk>\d+)', BookmarkDetailView.as_view(), name="detail_view"),
+    url(r'^accounts/login/$', auth_views.login, name='login'),
+    url(r'^accounts/logout/$', auth_views.logout, name='logout'),
+    url(r'^update/(?P<pk>\d+)/$', BookmarkUpdateView.as_view(), name="update_view"),
 ]
 

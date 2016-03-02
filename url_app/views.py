@@ -1,29 +1,26 @@
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from django.views.generic import View, ListView, DetailView
-from url_app.forms import BookmarkForm
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from hashids import Hashids
 from url_app.models import Bookmark, Click
 
 
-class FirstView(View):
+class BookmarkCreateView(CreateView):
+    model = Bookmark
+    fields = ('original_url', 'title', 'description')
 
+    def form_valid(self, form):
+        object = form.save(commit=False)
+        object.user = self.request.user
+        object.save()
+        hashids = Hashids(min_length=5)
+        object.shortened_url = hashids.encode(object.id)
+        object.save()
+        return super().form_valid(form)
 
-    def get(self, request):
-        bookmark_form = BookmarkForm()
-        return render(request, 'index.html', {'form': bookmark_form})
-
-
-    def post(self, request):
-        form_instance = BookmarkForm(request.POST)
-        hashids = Hashids()
-        if form_instance.is_valid():
-            new_url = form_instance.save()
-            new_url.shortened_url = hashids.encode(new_url.id)
-            new_url.save()
-            return render(request, "new_url.html", {'new_url': new_url})
-        return HttpResponseRedirect(reverse("first_view"))
+    def get_success_url(self):
+        return reverse("bookmark_list_view")
 
 
 class BookmarkListView(ListView):
@@ -43,3 +40,9 @@ class BookmarkDetailView(DetailView):
         Click.objects.create(url=object)
         return object
 
+class BookmarkUpdateView(UpdateView):
+    model = Bookmark
+    fields = ('original_url', 'title', 'description')
+
+    def get_success_url(self):
+        return reverse("first_view")
