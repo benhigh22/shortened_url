@@ -16,13 +16,14 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
-from url_app.views import FirstView, redirect, BookmarkListView
+from url_app.views import FirstView, redirect, BookmarkListView, BookmarkDetailView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', FirstView.as_view(), name="first_view"),
     url(r'^list/', BookmarkListView.as_view(), name="bookmark_list_view"),
     url(r'^b/(?P<url>\w+)', redirect),
-    url(r'^newurl/', FirstView.as_view(), name="new_url")
+    url(r'^newurl/', FirstView.as_view(), name="new_url"),
+    url(r'^detail/(?P<pk>\d+)', BookmarkDetailView.as_view(), name="detail_view")
 ]
 

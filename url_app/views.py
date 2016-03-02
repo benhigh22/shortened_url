@@ -1,7 +1,7 @@
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from django.views.generic import View, ListView
+from django.views.generic import View, ListView, DetailView
 from url_app.forms import BookmarkForm
 from hashids import Hashids
 from url_app.models import Bookmark, Click
@@ -35,4 +35,6 @@ def redirect(request, url):
     return HttpResponseRedirect(redirect_url_object.original_url)
 
 
+class BookmarkDetailView(DetailView):
+    model = Bookmark
 

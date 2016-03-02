@@ -1,7 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
+<ul class="nav nav-pills">
+  <li role="presentation"><a href="{% url 'first_view' %}">Home</a></li>
+  <li role="presentation"><a href="{% url 'bookmark_list_view' %}">All New Urls</a></li>
+</ul>
+    <br><br><br><br>
 <div>Title: {{ new_url.title }} </div>
 <div>Your new Url: <a href="{{ new_url.original_url }}">{{ new_url }}</a></div>
 <div><a href="{% url 'bookmark_list_view' %}">Click to see all of the new urls</a></div>

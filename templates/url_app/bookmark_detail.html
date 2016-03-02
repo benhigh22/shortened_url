@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <table class="table table-hover">
+  <th>Original Url</th><th> Time Created: </th><th>Description (if applicable)</th>
+<tr>
+  <td>{{ object.original_url }}</td> <td>{{ object.timestamp }}</td><td>{{ object.description }}</td>
+</tr>
+    </table>
+{% endblock %}

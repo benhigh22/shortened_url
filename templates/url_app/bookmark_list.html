@@ -2,8 +2,19 @@
 
 {% block content %}
 
-{% for url in object_list %}
-    <div>{{ url.title }}: <a href="{{ url.original_url }}">http://127.0.0.1:8000/b/{{ url.shortened_url }}</a> Time Created: {{ url.timestamp }}</div>
-{% endfor %}
+ <ul class="nav nav-pills">
+  <li role="presentation"><a href="{% url 'first_view' %}">Home</a></li>
+  <li role="presentation" class="active"><a href="{% url 'bookmark_list_view' %}">All New Urls</a></li>
+</ul>
+    <br><br><br><br>
 
+<table class="table table-bordered">
+<th>New Url</th><th>Title (click for more info)</th>
+{% for url in object_list %}
+    <tr>
+        <td><a href="{{ url.original_url }}">http://127.0.0.1:8000/b/{{ url.shortened_url }}</a></td>
+        <td><a href="{% url 'detail_view' url.id %}">{{ url.title }}</a> </td>
+    </tr>
+{% endfor %}
+</table>
 {% endblock %}
