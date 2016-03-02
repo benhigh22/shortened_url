@@ -9,6 +9,9 @@ class Bookmark(models.Model):
     shortened_url = models.CharField(max_length=100)
     timestamp = models.DateTimeField(auto_now_add=True)
 
+    def click_count(self):
+        return self.click_set.all().count()
+
     def __str__(self):
         return self.shortened_url
 
@@ -16,8 +19,7 @@ class Bookmark(models.Model):
         ordering = ['-timestamp']
 
 class Click(models.Model):
-    time_created = models.DateTimeField(auto_now_add=True)
-    bookmark_url = models.ForeignKey(Bookmark)
+    clicked = models.BooleanField(default=True)
+    url = models.ForeignKey(Bookmark)
 
-    class Meta:
-        ordering = ['-time_created']
+

@@ -38,6 +38,8 @@ def redirect(request, url):
 class BookmarkDetailView(DetailView):
     model = Bookmark
 
-
-
+    def get_object(self):
+        object = super().get_object()
+        Click.objects.create(url=object)
+        return object
 
