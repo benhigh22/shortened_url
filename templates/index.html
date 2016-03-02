@@ -6,13 +6,15 @@
   <li role="presentation" class="active"><a href="{% url 'first_view' %}">Home</a></li>
   <li role="presentation"><a href="{% url 'bookmark_list_view' %}">All New Urls</a></li>
 </ul>
-    <br><br><br><br>
+    <br><br>
+<h1>Enter a url to shorten it to a new secret url!</h1>
+<h2>Give it a title and description to remember what it is!</h2>
+    <br><br><br>
     <form action="" method="post">
     {% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" value="Submit">
-    </form>
-    <br><br>
-
+        <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+<br><br>
 
 {% endblock %}

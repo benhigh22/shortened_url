@@ -6,8 +6,9 @@
   <li role="presentation"><a href="{% url 'first_view' %}">Home</a></li>
   <li role="presentation" class="active"><a href="{% url 'bookmark_list_view' %}">All New Urls</a></li>
 </ul>
-    <br><br><br><br>
-
+    <br><br>
+<h1>All New Urls - Click one to see where it takes you!</h1>
+    <br><br>
 <table class="table table-bordered">
 <th>New Url</th><th>Title (click for more info)</th>
 {% for url in object_list %}

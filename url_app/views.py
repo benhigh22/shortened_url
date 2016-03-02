@@ -38,3 +38,6 @@ def redirect(request, url):
 class BookmarkDetailView(DetailView):
     model = Bookmark
 
+
+
+

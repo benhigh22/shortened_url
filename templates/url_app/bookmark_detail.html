@@ -1,10 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <table class="table table-hover">
-  <th>Original Url</th><th> Time Created: </th><th>Description (if applicable)</th>
+<ul class="nav nav-pills">
+  <li role="presentation"><a href="{% url 'first_view' %}">Home</a></li>
+  <li role="presentation"><a href="{% url 'bookmark_list_view' %}">All New Urls</a></li>
+</ul>
+    <h1>Details for {{ object.title }}</h1>
+<table class="table table-hover">
+<th>Original Url</th><th> Time Created: </th><th>Description (if applicable)</th>
 <tr>
   <td>{{ object.original_url }}</td> <td>{{ object.timestamp }}</td><td>{{ object.description }}</td>
 </tr>
-    </table>
+</table>
 {% endblock %}
