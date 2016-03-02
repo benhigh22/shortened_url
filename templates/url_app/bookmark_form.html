@@ -1,17 +1,13 @@
 {% extends 'base.html' %}
-
+{% block title %}Home Page{% endblock %}
 {% block content %}
 
-<ul class="nav nav-pills">
-  <li role="presentation" class="active"><a href="{% url 'first_view' %}">Home</a></li>
-  <li role="presentation"><a href="{% url 'bookmark_list_view' %}">All New Urls</a></li>
-</ul>
+
 {% if request.user.is_authenticated %}
-    <h1>Welcome {{ request.user }}</h1>
-    <h5><a href="{% url 'logout' %}">Logout</a></h5>
+<h1>Welcome {{ request.user }}</h1>
 <h2>Enter a url to shorten it to a new secret url!</h2>
 <h3>Give it a title and description to remember what it is!</h3>
-    <br><br>
+<br><br>
 
 <form action="" method="post">
 {% csrf_token %}

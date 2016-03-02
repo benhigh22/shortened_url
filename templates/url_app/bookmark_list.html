@@ -1,16 +1,12 @@
 {% extends 'base.html' %}
-
+{% block title %}All Urls{% endblock %}
 {% block content %}
-
- <ul class="nav nav-pills">
-  <li role="presentation"><a href="{% url 'first_view' %}">Home</a></li>
-  <li role="presentation" class="active"><a href="{% url 'bookmark_list_view' %}">All New Urls</a></li>
-</ul>
     <br><br>
-<h1>All New Urls - Click one to see where it takes you!</h1>
+<h5 class="list-title">All New Urls - Yours is the top one, but click any to see where they take you!</h5>
     <br><br>
-<table class="table table-bordered">
+<table class="table table-striped">
 <th>New Url</th><th>Title (click for more info)</th>
+
 {% for url in object_list %}
     <tr>
         <td><a href="{{ url.original_url }}">http://127.0.0.1:8000/b/{{ url.shortened_url }}</a></td>
