@@ -1,6 +1,5 @@
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from hashids import Hashids
 from url_app.models import Bookmark, Click

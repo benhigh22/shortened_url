@@ -23,7 +23,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', BookmarkCreateView.as_view(), name="first_view"),
     url(r'^list/', BookmarkListView.as_view(), name="bookmark_list_view"),
-    url(r'^b/(?P<url>\w+)', redirect),
+    url(r'^b/(?P<url>\w+)', redirect, name='redirect'),
     url(r'^detail/(?P<pk>\d+)', BookmarkDetailView.as_view(), name="detail_view"),
     url(r'^accounts/login/$', auth_views.login, name='login'),
     url(r'^accounts/logout/$', auth_views.logout, name='logout'),
