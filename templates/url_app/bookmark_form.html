@@ -1,12 +1,11 @@
 {% extends 'base.html' %}
 {% block title %}Home Page{% endblock %}
 {% block content %}
-
-
 {% if request.user.is_authenticated %}
-<h1>Welcome {{ request.user }}</h1>
-<h2>Enter a url to shorten it to a new secret url!</h2>
-<h3>Give it a title and description to remember what it is!</h3>
+    <h1>Welcome {{ request.user }}</h1>
+    <h3>How does it feel to be Fancy?</h3>
+<h3>Enter a url to shorten it to a new secret url!</h3>
+<h4>Give it a title and description to remember what it is!</h4>
 <br><br>
 
 <form action="" method="post">
