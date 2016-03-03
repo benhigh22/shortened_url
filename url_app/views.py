@@ -35,9 +35,9 @@ class BookmarkDetailView(DetailView):
     model = Bookmark
 
     def get_object(self):
-        object = super().get_object()
-        Click.objects.create(url=object)
-        return object
+        url_object = super().get_object()
+        Click.objects.create(url=url_object)
+        return url_object
 
 class BookmarkUpdateView(UpdateView):
     model = Bookmark
