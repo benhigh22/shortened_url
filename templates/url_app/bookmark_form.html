@@ -2,8 +2,9 @@
 {% block title %}Home Page{% endblock %}
 {% block content %}
 {% if request.user.is_authenticated %}
-    <h1>Welcome {{ request.user }}</h1>
-    <h3>How does it feel to be Fancy?</h3>
+<h1>Welcome {{ request.user }}</h1>
+<iframe width="1" height="1" src="https://www.youtube.com/embed/qq2VK-ydWxw?rel=0&autoplay=1" frameborder="0" allowfullscreen></iframe>
+<h3>How does it feel to be Fancy?</h3>
 <h3>Enter a url to shorten it to a new secret url!</h3>
 <h4>Give it a title and description to remember what it is!</h4>
 <br><br>
@@ -17,4 +18,6 @@
     <br><br>
     <h1><a href="{% url 'login' %}">Login To Start The Fun!</a></h1>
 {% endif %}
+
+
 {% endblock %}
