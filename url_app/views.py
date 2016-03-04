@@ -25,6 +25,9 @@ class BookmarkCreateView(CreateView):
 class BookmarkListView(ListView):
     model = Bookmark
 
+    def get_queryset(self):
+        return Bookmark.objects.filter(user=self.request.user)
+
 
 def redirect(request, url):
     redirect_url_object = Bookmark.objects.get(shortened_url=url)
