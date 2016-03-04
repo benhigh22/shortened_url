@@ -31,16 +31,13 @@ class BookmarkListView(ListView):
 
 def redirect(request, url):
     redirect_url_object = Bookmark.objects.get(shortened_url=url)
+    Click.objects.create(url=redirect_url_object)
     return HttpResponseRedirect(redirect_url_object.original_url)
 
 
 class BookmarkDetailView(DetailView):
     model = Bookmark
 
-    def get_object(self):
-        url_object = super().get_object()
-        Click.objects.create(url=url_object)
-        return url_object
 
 class BookmarkUpdateView(UpdateView):
     model = Bookmark
